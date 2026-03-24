@@ -1,7 +1,9 @@
 # libakamaibmp Research
 
 This repository documents a method for partially deobfuscating the `libakamaibmp.so` library.
-The focus is on recovering a readable version of the library by dumping the memory after it has been loaded by the runtime. Control flow flattening is **not** addressed in this research.
+The focus is on recovering a readable version of the library by dumping the memory after it has been loaded by the runtime.
+
+This method **does not address control flow flattening or any VM-based obfuscation techniques**. If the library uses a virtual machine interpreter or bytecode-based protection, that logic will remain intact.
 
 Both the **original obfuscated** `libakamaibmp.so` and the **reconstructed deobfuscated** `libakamai_deobfuscated.so` are provided in this repository.
 
@@ -17,7 +19,7 @@ The resulting dumped library is significantly easier to analyze in reverse engin
 
 ### Decompiled view of `buildN` function before deobfuscation
 
-Insert link here.
+![buildN obfuscated](https://github.com/answarck/libakamaibmp-research/blob/main/images/buildn_obfuscated.png?raw=true)
 
 ---
 
@@ -145,7 +147,7 @@ Import structures such as `JNIEnv` into Ghidra to further improve readability of
 
 # buildN function after deobfuscation
 
-Insert image here.
+![buildN deobfuscated](https://raw.githubusercontent.com/answarck/libakamaibmp-research/refs/heads/main/images/buildn_deobfuscated.png)
 
 ---
 
