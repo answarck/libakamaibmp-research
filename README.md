@@ -111,15 +111,11 @@ dd if=$(pwd)/mem skip=$((0x7f1cc346f000)) bs=1 count=$((0x7f1cc3701000-0x7f1cc34
 
 Repeat this process for every mapped region.
 
-### 10. Merge the dumped segments
+### 10. Rebuild the library
 
-After dumping all segments, they must be merged back into a single file.
+After dumping all segments, rebuild the library from the dumped memory.
 
-Navigate to the directory where the segments were saved.
-
-### 11. Rebuild the library
-
-Create a new file large enough to hold all segments:
+Navigate to the directory where the segments were saved and create a new file large enough to hold all segments:
 
 ```
 truncate -s $((size)) libakamai_deobfuscated.so
@@ -127,9 +123,9 @@ truncate -s $((size)) libakamai_deobfuscated.so
 
 `size` should be the total size required to contain all segments.
 
-Then write each dumped segment back to its correct file offset using `dd`.
+Then write each dumped segment back into the file at the correct offsets using `dd`.
 
-### 12. Analyze the rebuilt library
+### 11. Analyze the rebuilt library
 
 Copy the reconstructed file to the PC:
 
@@ -139,7 +135,7 @@ libakamai_deobfuscated.so
 
 Open it in **Ghidra**. The disassembly and decompiled output should now be significantly clearer.
 
-### 13. Improve readability
+### 12. Improve readability
 
 Import structures such as `JNIEnv` into Ghidra to further improve readability of the native code.
 
@@ -151,4 +147,4 @@ Import structures such as `JNIEnv` into Ghidra to further improve readability of
 
 ---
 
-This README was formatted and grammar-corrected with the assistance of ChatGPT.
+ChatGPT was used for formatting this README.
